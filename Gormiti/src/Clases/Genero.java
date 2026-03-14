@@ -1,7 +1,7 @@
 package Clases;
 
 public enum Genero {
-	Hombre, Mujer;
+	H, M;
 
 	@Override
 	public String toString() {

@@ -3,6 +3,11 @@
  */
 package Clases;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * Clase Usuario: Hereda de la clase Persona
  */
@@ -11,6 +16,7 @@ public class Usuario extends Persona {
 	private int experiencia;
 	private String contrasena;
 	private String nickname;
+	private String rol;
 
 	/**
 	 * Constructor por parametros de la clase Usuario
@@ -27,12 +33,13 @@ public class Usuario extends Persona {
 	 * @param nickname
 	 */
 	public Usuario(String nombre, String apellido, int edad, Genero genero, String mail, String telefono,
-			int numMovimientos, int experiencia, String contrasena, String nickname) {
+			int numMovimientos, int experiencia, String contrasena, String nickname, String rol) {
 		super(nombre, apellido, edad, genero, mail, telefono);
 		this.numMovimientos = numMovimientos;
 		this.experiencia = experiencia;
 		this.contrasena = contrasena;
 		this.nickname = nickname;
+		this.rol = rol;
 
 		// TODO Auto-generated constructor stub
 	}
@@ -160,7 +167,88 @@ public class Usuario extends Persona {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
+	
+	public int insertarP(Usuario u) {
+	    String sql = "INSERT INTO persona (nombre, apellido, edad, genero, mail, telefono) "
+	               + "VALUES (?, ?, ?, ?, ?, ?)";
+
+	    Connection conn = null;
+	    PreparedStatement ps = null;
+
+	    try {
+	        conn = ConexionMySQL.getConexion();
+	        ps   = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS); // ← línea clave
+
+	        ps.setString(1, u.getNombre());
+	        ps.setString(2, u.getApellido());
+	        ps.setInt   (3, u.getEdad());
+	        ps.setString(4, u.getGenero().name());
+	        ps.setString(5, u.getMail());
+	        ps.setString(6, u.getTelefono());
+
+	        int filas = ps.executeUpdate();
+
+	        if (filas > 0) {
+	            ResultSet rs = ps.getGeneratedKeys();
+	            if (rs.next()) {
+	                return rs.getInt(1); // ← devuelve el ID generado
+	            }
+	        }
+
+	    } catch (SQLException e) {
+	        System.err.println("Error al insertar persona: " + e.getMessage());
+	    } finally {
+	        ConexionMySQL.cerrarConexion(conn, ps, null);
+	    }
+	    return -1; // falló
+	}
+	
+	
+    
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+	
+	
+	public boolean insertarU(int idPersona, String contrasena, String rol, String nickname) {
+	    String sql = "INSERT INTO usuario (id_persona, numMovimientos, experiencia, contrasena, rol, nickname) "
+	               + "VALUES (?, 5, 5, ?, ?, ?)";
+	    //                       ↑  ↑
+	    //            numMovimientos y experiencia empiezan en 0 por defecto
+
+	    Connection conn = null;
+	    PreparedStatement ps = null;
+
+	    try {
+	        conn = ConexionMySQL.getConexion();
+	        ps   = conn.prepareStatement(sql);
+
+	        ps.setInt   (1, idPersona);
+	        ps.setString(2, contrasena);
+	        ps.setString(3, rol);
+	        ps.setString(4, nickname);
+
+	        int filas = ps.executeUpdate();
+	        return filas > 0;
+
+	    } catch (SQLException e) {
+	        System.err.println("Error al insertar usuario: " + e.getMessage());
+	        return false;
+	    } finally {
+	        ConexionMySQL.cerrarConexion(conn, ps, null);
+	    }
+	}
+}
+
+
+
+
 
 	
 
-}
+

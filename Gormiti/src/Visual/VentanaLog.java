@@ -6,10 +6,14 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 
+import Clases.ConexionMySQL;
 import Clases.Genero;
+import Clases.PasswordBase64Encoder;
 import Clases.Usuario;
 
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+
 import java.awt.Label;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
@@ -22,6 +26,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class VentanaLog extends JFrame {
 	
@@ -32,6 +39,8 @@ public class VentanaLog extends JFrame {
 	private JTextField Apellidotxt;
 	private JTextField Mailtxt;
 	private JTextField Telefonotxt;
+	private JTextField nick;
+	private JTextField contraseña;
 
 	/**
 	 * Launch the application.
@@ -138,44 +147,72 @@ public class VentanaLog extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				GestionIntercambiador ventana44 = new GestionIntercambiador();
+				InicioSesion ini = new InicioSesion();
 			}
 		});
 		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
 		btnNewButton.setBounds(850, 671, 205, 51);
 		frame.getContentPane().add(btnNewButton);
 		
-		JLabel labelPrueba = new JLabel("Prueba\r\n");
-		labelPrueba.setFont(new Font("Tahoma", Font.BOLD, 15));
-		labelPrueba.setBounds(48, 481, 900, 31);
-		frame.getContentPane().add(labelPrueba);
-		
 		JButton CrearUsuariobtn = new JButton("Crear Usuario");
 		CrearUsuariobtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Usuario u1 = new Usuario();
-				u1.setNombre(Nombretxt.getText());
-				u1.setApellido(Apellidotxt.getText());
-				u1.setEdad((int) Edadspinner.getValue());
-				//Es necesario castear el objeto como un enumerador. Surgio un problema que se pudo detectar haciendo debug en esta función.
-				u1.setGenero((Genero) GeneroBox.getSelectedItem());
-				u1.setMail(Mailtxt.getText());
-				u1.setTelefono(Telefonotxt.getText());
-				
-				labelPrueba.setText("Has generado un usuario con los atributos: " + u1.getNombre() + ", " + u1.getApellido() + ", " + u1.getEdad() + ", " + u1.getGenero()+ ", " + u1.getMail() + ", " + u1.getTelefono());
-				
-				
-				
-				
-				
-			System.out.println("Has generado un usuario con los atributos: " + u1.getNombre() + "," + u1.getApellido() + "," + u1.getEdad() + "," + u1.getGenero()+ "," + u1.getMail() + "," + u1.getTelefono());
-				
-			}
+				PasswordBase64Encoder pass = new PasswordBase64Encoder();
+				 Usuario u = new Usuario();
+				    u.setNombre  (Nombretxt.getText().trim());
+				    u.setApellido(Apellidotxt.getText().trim());
+				    u.setEdad((int) Edadspinner.getValue());
+				    u.setGenero  (Genero.valueOf(GeneroBox.getSelectedItem().toString()));
+				    u.setMail    (Mailtxt.getText().trim());
+				    u.setTelefono(Telefonotxt.getText().trim());
+
+				    // Datos de usuario
+				    @SuppressWarnings("static-access")
+					String contrasena = pass.encrypt(contraseña.getText().trim());
+				    String rol        = "admin";
+				    String nickname   = nick.getText().trim();
+
+				    
+
+				    // 1. Insertar persona y obtener ID
+				    int idPersona = u.insertarP(u);
+
+				    // 2. Insertar usuario con ese ID
+				    if (idPersona != -1) {
+				        boolean ok = u.insertarU(idPersona, contrasena, rol, nickname);
+				        if (ok) {
+				            JOptionPane.showMessageDialog(null, "Usuario registrado correctamente.");
+				        } else {
+				            JOptionPane.showMessageDialog(null, "Error al crear el usuario.", "Error", JOptionPane.ERROR_MESSAGE);
+				        }
+				    } else {
+				        JOptionPane.showMessageDialog(null, "Error al guardar la persona.", "Error", JOptionPane.ERROR_MESSAGE);
+				    }}
 		});
 		CrearUsuariobtn.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
 		CrearUsuariobtn.setBounds(450, 671, 205, 51);
 		frame.getContentPane().add(CrearUsuariobtn);
+		
+		JLabel lblNewLabel_7 = new JLabel("NickName:\r\n");
+		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel_7.setBounds(309, 492, 100, 31);
+		frame.getContentPane().add(lblNewLabel_7);
+		
+		nick = new JTextField();
+		nick.setColumns(10);
+		nick.setBounds(450, 492, 205, 31);
+		frame.getContentPane().add(nick);
+		
+		JLabel lblNewLabel_6_1 = new JLabel("Contraseña\r\n");
+		lblNewLabel_6_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel_6_1.setBounds(850, 492, 100, 31);
+		frame.getContentPane().add(lblNewLabel_6_1);
+		
+		contraseña = new JTextField();
+		contraseña.setColumns(10);
+		contraseña.setBounds(991, 492, 205, 31);
+		frame.getContentPane().add(contraseña);
 		
 		
 	
