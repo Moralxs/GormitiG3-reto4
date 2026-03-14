@@ -1,164 +1,196 @@
 package Clases;
 
 /**
- * Clase Persona: la clase padre para las clases Usuario y Admin. Sirve de
- * plantilla para la implementacion de atributos y metodos en las otras clases.
- * 
- * @author Gormiti
- * 
- * @hidden LEYENDA: Getter -> Un getter es el metodo con el cual podemos conocer
- *         el valor del atributo de la clase que referencie el metodo.
- * @hidden LEYENDA: Setter-> Un setter es el metodo con el cual podemos dale un
- *         valor a un atributo de la calse, sobreescribiendola en caso de tener
- *         un valor anteriormente.
- * 
+ * Clase base que representa a una persona física en el sistema de gestión
+ * del intercambiador.
+ *
+ * <p>Actúa como superclase para {@link Usuario}, proporcionando los atributos
+ * e identificadores comunes a cualquier persona registrada: nombre, apellido,
+ * edad, género, correo electrónico y teléfono.
+ *
+ * <p>Las subclases deben extender esta clase para añadir los atributos y
+ * comportamientos específicos de cada tipo de usuario del sistema.
+ *
+ * <p><b>Leyenda de convenciones:</b>
+ * <ul>
+ *   <li><b>Getter</b>: método que devuelve el valor actual de un atributo
+ *       de la clase.</li>
+ *   <li><b>Setter</b>: método que asigna o sobreescribe el valor de un
+ *       atributo de la clase.</li>
+ * </ul>
+ *
+ * @author  Gormiti
+ * @version 1.0
+ * @see     Usuario
+ * @see     Genero
  */
-
 public class Persona {
 
-	private String nombre;
-	private String apellido;
-	private int edad;
-	private Genero genero;
-	private String mail;
-	private String telefono;
+    /** Nombre de pila de la persona. */
+    private String nombre;
 
-	/**
-	 * Constructor por parametros de la clase Persona
-	 *
-	 * @param id
-	 * @param nombre
-	 * @param apellido
-	 * @param edad
-	 * @param genero
-	 * @param mail
-	 * @param telefono
-	 */
-	public Persona( String nombre, String apellido, int edad, Genero genero, String mail, String telefono) {
-		super();
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.edad = edad;
-		this.genero = genero;
-		this.mail = mail;
-		this.telefono = telefono;
-	}
+    /** Primer apellido de la persona. */
+    private String apellido;
 
-	
-	/**
-	 * Constructor vacio de la clase Persona
-	 */
-	public Persona() {
-		// TODO Auto-generated constructor stub
-	}
+    /** Edad de la persona en años. */
+    private int edad;
 
-	
-	/**
-	 * Getter NOMBRE
-	 * 
-	 * @return nombre
-	 */
-	public String getNombre() {
-		return nombre;
-	}
+    /**
+     * Género de la persona, representado mediante el enum {@link Genero}.
+     * Permite valores tipados y evita cadenas de texto arbitrarias.
+     */
+    private Genero genero;
 
-	/**
-	 * Setter NOMBRE
-	 * 
-	 * @param nombre
-	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    /** Dirección de correo electrónico de contacto. */
+    private String mail;
 
-	/**
-	 * Getter APELLIDO
-	 * 
-	 * @return apellido
-	 */
-	public String getApellido() {
-		return apellido;
-	}
+    /** Número de teléfono de contacto. */
+    private String telefono;
 
-	/**
-	 * Setter APPELIDO
-	 * 
-	 * @param apellido
-	 */
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
+    // ══════════════════════════════════════════════
+    // CONSTRUCTORES
+    // ══════════════════════════════════════════════
 
-	/**
-	 * Getter EDAD
-	 * 
-	 * @return edad
-	 */
-	public int getEdad() {
-		return edad;
-	}
+    /**
+     * Constructor con parámetros que inicializa todos los atributos
+     * de la persona.
+     *
+     * @param nombre    nombre de pila de la persona
+     * @param apellido  primer apellido de la persona
+     * @param edad      edad en años
+     * @param genero    género según el enum {@link Genero}
+     * @param mail      dirección de correo electrónico
+     * @param telefono  número de teléfono de contacto
+     */
+    public Persona(String nombre, String apellido, int edad, Genero genero, String mail, String telefono) {
+        super();
+        this.nombre   = nombre;
+        this.apellido = apellido;
+        this.edad     = edad;
+        this.genero   = genero;
+        this.mail     = mail;
+        this.telefono = telefono;
+    }
 
-	/**
-	 * Setter EDAD
-	 * 
-	 * @param edad
-	 */
-	public void setEdad(int edad) {
-		this.edad = edad;
-	}
+    /**
+     * Constructor vacío que crea una instancia de {@code Persona} sin valores
+     * iniciales. Los atributos deben asignarse posteriormente mediante
+     * los setters correspondientes.
+     */
+    public Persona() {
+    }
 
-	/**
-	 * Getter GENERO
-	 * 
-	 * @return genero
-	 */
-	public Genero getGenero() {
-		return genero;
-	}
+    // ══════════════════════════════════════════════
+    // GETTERS Y SETTERS
+    // ══════════════════════════════════════════════
 
-	/**
-	 * Setter GENERO
-	 * 
-	 * @param genero
-	 */
-	public void setGenero(Genero genero) {
-		this.genero = genero;
-	}
+    /**
+     * Getter NOMBRE — devuelve el nombre de pila de la persona.
+     *
+     * @return nombre de pila
+     */
+    public String getNombre() {
+        return nombre;
+    }
 
-	/**
-	 * Getter MAIL
-	 * 
-	 * @return mail
-	 */
-	public String getMail() {
-		return mail;
-	}
+    /**
+     * Setter NOMBRE — establece o sobreescribe el nombre de pila de la persona.
+     *
+     * @param nombre nuevo nombre de pila
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	/**
-	 * Setter MAIL
-	 * 
-	 * @param mail
-	 */
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
+    /**
+     * Getter APELLIDO — devuelve el primer apellido de la persona.
+     *
+     * @return primer apellido
+     */
+    public String getApellido() {
+        return apellido;
+    }
 
-	/**
-	 * Getter TELEFONO
-	 * 
-	 * @return telefono
-	 */
-	public String getTelefono() {
-		return telefono;
-	}
+    /**
+     * Setter APELLIDO — establece o sobreescribe el primer apellido de la persona.
+     *
+     * @param apellido nuevo apellido
+     */
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
-	/**
-	 * Setter TELEFONO
-	 * 
-	 * @param telefono
-	 */
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
+    /**
+     * Getter EDAD — devuelve la edad de la persona en años.
+     *
+     * @return edad en años
+     */
+    public int getEdad() {
+        return edad;
+    }
 
+    /**
+     * Setter EDAD — establece o sobreescribe la edad de la persona.
+     *
+     * @param edad nueva edad en años
+     */
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    /**
+     * Getter GENERO — devuelve el género de la persona.
+     *
+     * @return género según el enum {@link Genero}
+     */
+    public Genero getGenero() {
+        return genero;
+    }
+
+    /**
+     * Setter GENERO — establece o sobreescribe el género de la persona.
+     *
+     * @param genero nuevo género según el enum {@link Genero}
+     */
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
+
+    /**
+     * Getter MAIL — devuelve la dirección de correo electrónico de la persona.
+     *
+     * @return dirección de correo electrónico
+     */
+    public String getMail() {
+        return mail;
+    }
+
+    /**
+     * Setter MAIL — establece o sobreescribe la dirección de correo
+     * electrónico de la persona.
+     *
+     * @param mail nueva dirección de correo electrónico
+     */
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    /**
+     * Getter TELEFONO — devuelve el número de teléfono de contacto de la persona.
+     *
+     * @return número de teléfono
+     */
+    public String getTelefono() {
+        return telefono;
+    }
+
+    /**
+     * Setter TELEFONO — establece o sobreescribe el número de teléfono
+     * de contacto de la persona.
+     *
+     * @param telefono nuevo número de teléfono
+     */
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
 }
