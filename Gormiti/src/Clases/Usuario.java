@@ -1,4 +1,4 @@
-package Clases;
+package Clases;      //MIKEL Y ANDONI 
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

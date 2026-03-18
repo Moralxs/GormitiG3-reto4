@@ -1,4 +1,4 @@
-package Visual;
+package Visual;  //XABI
 
 import Clases.ConexionMySQL;
 
@@ -60,7 +60,7 @@ public class GestionIntercambiador extends JFrame {
     // INICIALIZACIÓN DE LA INTERFAZ
     // ══════════════════════════════════════════════
 
-    /**
+    /**   //XABI Y MIKEL
      * Construye y configura todos los componentes de la interfaz gráfica.
      *
      * <p>Operaciones realizadas:
@@ -164,7 +164,7 @@ public class GestionIntercambiador extends JFrame {
         frame.getContentPane().add(scrollRegistros);
 
         // ══════════════════════════════════════════
-        // PANEL DERECHO — USUARIOS  (x=920, ancho=960)
+        // PANEL DERECHO — USUARIOS  (x=920, ancho=960)    //XABI PERU
         // ══════════════════════════════════════════
 
         JLabel lblUsuarios = new JLabel("USUARIOS");
@@ -276,7 +276,7 @@ public class GestionIntercambiador extends JFrame {
         });
 
         // ─────────────────────────────────────────
-        // LISTENERS — USUARIOS
+        // LISTENERS — USUARIOS     //XABI Y ANDONI
         // ─────────────────────────────────────────
 
         /** Recarga todos los usuarios de la BD en la tabla. */
@@ -321,7 +321,7 @@ public class GestionIntercambiador extends JFrame {
     }
 
     // ══════════════════════════════════════════════
-    // CRUD — REGISTROS
+    // CRUD — REGISTROS     //XABI
     // ══════════════════════════════════════════════
 
     /**
@@ -454,7 +454,7 @@ public class GestionIntercambiador extends JFrame {
     }
 
     // ══════════════════════════════════════════════
-    // CRUD — USUARIOS
+    // CRUD — USUARIOS    // XABI Y PERU
     // ══════════════════════════════════════════════
 
     /**
@@ -599,7 +599,7 @@ public class GestionIntercambiador extends JFrame {
     }
 
     // ══════════════════════════════════════════════
-    // MÉTODOS UTILITARIOS
+    // MÉTODOS UTILITARIOS   //MIKEL Y XABI 
     // ══════════════════════════════════════════════
 
     /**
@@ -617,7 +617,7 @@ public class GestionIntercambiador extends JFrame {
     }
 
     // ══════════════════════════════════════════════
-    // GETTERS / SETTERS
+    // GETTERS / SETTERS   //XABI Y ANDONI 
     // ══════════════════════════════════════════════
 
     /**

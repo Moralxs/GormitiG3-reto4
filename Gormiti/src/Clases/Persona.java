@@ -1,4 +1,4 @@
-package Clases;
+package Clases;    //XABI 
 
 /**
  * Clase base que representa a una persona física en el sistema de gestión
@@ -77,6 +77,7 @@ public class Persona {
      * iniciales. Los atributos deben asignarse posteriormente mediante
      * los setters correspondientes.
      */
+    // PERU Y XABI
     public Persona() {
     }
 

@@ -1,4 +1,4 @@
-package Clases;
+package Clases;     //PERU Y XABI
 
 /**
  * Representa un intercambiador de calor del sistema.

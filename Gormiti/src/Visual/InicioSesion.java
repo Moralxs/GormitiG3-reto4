@@ -1,4 +1,4 @@
-package Visual;
+package Visual;   //XABI
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -85,7 +85,7 @@ public class InicioSesion {
     }
 
     // ══════════════════════════════════════════════
-    // CONSTRUCTOR
+    // CONSTRUCTOR  //XABI Y MIKEL 
     // ══════════════════════════════════════════════
 
     /**
@@ -97,7 +97,7 @@ public class InicioSesion {
     }
 
     // ══════════════════════════════════════════════
-    // INICIALIZACIÓN DE LA INTERFAZ
+    // INICIALIZACIÓN DE LA INTERFAZ   //XABI y PERU
     // ══════════════════════════════════════════════
 
     /**
@@ -171,7 +171,7 @@ public class InicioSesion {
     }
 
     // ══════════════════════════════════════════════
-    // LÓGICA DE AUTENTICACIÓN
+    // LÓGICA DE AUTENTICACIÓN    //XABI Y ANDONI 
     // ══════════════════════════════════════════════
 
     /**
@@ -231,7 +231,7 @@ public class InicioSesion {
     }
 
     // ══════════════════════════════════════════════
-    // MÉTODOS AUXILIARES
+    // MÉTODOS AUXILIARES    //XABI Y PERU 
     // ══════════════════════════════════════════════
 
     /**

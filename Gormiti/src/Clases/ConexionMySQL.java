@@ -1,4 +1,4 @@
-package Clases;
+package Clases;    //MIKEL y XABI
 
 import java.sql.Connection;
 import java.sql.DriverManager;

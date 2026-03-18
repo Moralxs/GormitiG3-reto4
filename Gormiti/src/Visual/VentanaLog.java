@@ -93,7 +93,7 @@ public class VentanaLog extends JFrame {
 
     // ══════════════════════════════════════════════
     // PUNTO DE ENTRADA
-    // ══════════════════════════════════════════════
+    // ══════════════════════════════════════════════   // XABI Y ANDONI 
 
     /**
      * Punto de entrada de la aplicación.
@@ -118,7 +118,7 @@ public class VentanaLog extends JFrame {
     }
 
     // ══════════════════════════════════════════════
-    // CONSTRUCTOR
+    // CONSTRUCTOR    //XABI Y MIKEL 
     // ══════════════════════════════════════════════
 
     /**
@@ -130,7 +130,7 @@ public class VentanaLog extends JFrame {
     }
 
     // ══════════════════════════════════════════════
-    // INICIALIZACIÓN DE LA INTERFAZ
+    // INICIALIZACIÓN DE LA INTERFAZ  //XABI, PERU Y MIKEL 
     // ══════════════════════════════════════════════
 
     /**
@@ -334,7 +334,7 @@ public class VentanaLog extends JFrame {
 
     // ══════════════════════════════════════════════
     // MÉTODOS HEREDADOS
-    // ══════════════════════════════════════════════
+    // ══════════════════════════════════════════════   //XABI 
 
     /**
      * Devuelve la representación en cadena de esta ventana.

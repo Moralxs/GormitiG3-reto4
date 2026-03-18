@@ -1,4 +1,4 @@
-package Clases;
+package Clases;    //XABI y ANDONI
 
 /**
  * Enumeración que representa el género de una persona en el sistema.
